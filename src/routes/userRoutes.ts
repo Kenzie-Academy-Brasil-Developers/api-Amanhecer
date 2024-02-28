@@ -1,12 +1,13 @@
-import express from 'express';
+import {Router} from 'express';
 import { UserController } from '../controllers/userControllers';
-import { validateRequest } from '../middlewares/validateMiddleware';
-import { CreateUserSchema, LoginUserSchema } from '../shemas/userShemas';
+// import { validateRequest } from '../middlewares/validateMiddleware';
+// import { CreateUserSchema, LoginUserSchema } from '../shemas/userShemas';
 
-const router = express.Router();
+export const userRoutes:Router = Router();
 const userController = new UserController();
 
-router.post('/register', validateRequest(CreateUserSchema), userController.createUser);
-router.post('/login', validateRequest(LoginUserSchema), userController.loginUser);
+// usersRouter.post('/register', validateRequest(CreateUserSchema), userController.createUser);
+userRoutes.post('/register', userController.createUser);
+// usersRouter.post('/login', validateRequest(LoginUserSchema), userController.loginUser);
 
-export default router;
+// export default {userRoutes};

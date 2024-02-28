@@ -1,5 +1,7 @@
 interface User {
-    id: number;
     name: string;
     email: string;
+    password: string;
+    contato: string;
+    emailAlternativo: string;
 }

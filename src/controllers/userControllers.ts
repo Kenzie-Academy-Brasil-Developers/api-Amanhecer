@@ -2,35 +2,36 @@ import { Request, Response } from 'express';
 import { UserService } from '../services/UserService';
 
 export class UserController {
-    private userService: UserService;
+    private userService: UserService = new UserService();
 
-    constructor() {
-        this.userService = new UserService();
-    }
+    // constructor() {
+    //     this.userService = new UserService();
+    // }
 
-    async createUser(req: Request, res: Response) {
+    public createUser = async (req: Request, res: Response): Promise<Response> => {
         console.log(req.body);
-        
-        // try {
-        //     const { name, email, password } = req.body;
-        //     const user = await this.userService.createUser({ name, email, password });
-        //     return res.json(user);
-        // } catch (error) {
-        //     return res.status(400).json({ error: error.message });
+        const body = req.body
+        const newBody = await this.userService.createUser(body)
+        return res.json(201).json(newBody);
+
+
+        // try{
+        // }catch (error) {
+        //     return res.status(400).json({ error: 'Não funcionou' });
         // }
     }
 
-    async loginUser(req: Request, res: Response) {
-        console.log(req.body);
+    // async loginUser(req: Request, res: Response) {
+    //     console.log(req.body);
         
-        // try {
-        //     const { email, password } = req.body;
-        //     const token = await this.userService.loginUser({ email, password });
-        //     return res.json({ token });
-        // } catch (error) {
-        //     return res.status(400).json({ error: error.message });
-        // }
-    }
+    //     try {
+    //         const { email, password } = req.body;
+    //         const token = await this.userService.loginUser({ email, password });
+    //         return res.json({ token });
+    //     } catch (error) {
+    //         return res.status(400).json({ error: 'Não funcionou' });
+    //     }
+    // }
 }
 
 
