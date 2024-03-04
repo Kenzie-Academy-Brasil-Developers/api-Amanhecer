@@ -4,12 +4,15 @@ export const UserSchema = z.object({
   id: z.number(),
   name: z.string(),
   email: z.string().email(),
+  phone: z.string(), 
+  emailAlternativo: z.string().email(), 
 });
 
 export const CreateUserSchema = z.object({
   name: z.string(),
-  email: z.string().email(),
+  email: z.string().email().array(),
   password: z.string().min(6),
+  phone: z.string().array(),
 });
 
 export const LoginUserSchema = z.object({
@@ -17,6 +20,6 @@ export const LoginUserSchema = z.object({
   password: z.string().min(6),
 });
 
-type userCreate = z.infer<typeof CreateUserSchema>
-
-export {userCreate}
+export type user = z.infer<typeof UserSchema>
+export type userCreate = z.infer<typeof CreateUserSchema>
+export type userLogin = z.infer<typeof LoginUserSchema>
