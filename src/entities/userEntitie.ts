@@ -1,23 +1,27 @@
 // User.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Phone } from '../entities/phoneEntities';
-import { Email } from '../entities/emailEntities';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
-
+  
   @Column()
   name: string;
 
-  @OneToMany(() => Phone, phone => phone.user)
-  phones: Phone[];
-
   @Column({unique: true})
-  username: string;
+  email: string;
+  
 
-  @OneToMany(() => Email, email => email.user)
-  emails: Email[];
+  @Column()
+  password: string;
+
+  @Column()
+  phones: string;
+
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  registrationDate: Date;
+  contacts: any;
 
 }
