@@ -1,9 +1,16 @@
-import { SessionService } from "../services/sessionService"
+import { Request, Response } from 'express';
+import { createTokenService } from "../services/sessionService"
 
-export class SessionController {
-    constructor(private sessionService: SessionService) { }
-    async login(req: Request, res: Response) {
-        const token = await this.sessionService.createToken(req.body)
-        return res.json({ token })
-    }
+
+const createTokenController  = async (req: Request, res: Response) => {
+    const { email, password } = req.body
+    console.log('entrei aqui');
+    
+
+    const token = await createTokenService({ email, password })
+
+    return res.json({ token })
 }
+
+export { createTokenController }
+

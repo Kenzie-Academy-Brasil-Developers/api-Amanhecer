@@ -3,37 +3,38 @@ import "express-async-errors"
 import cors from 'cors'
 import express, { Application, Router } from 'express';
 import {userRoutes} from "./routes/userRoutes";
-
-
-// import "dotenv/config";
-
+import { contactRouter } from "./routes/contactRoutes";
+import swaggerRouter from "./swagger";
+// import swaggerRouter from "./swagger"
 
 export const app: Application = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/users', userRoutes as Router);
-// app.use('/amamnhecer', amanhecerRoutes);
+app.use('/users', userRoutes);
+app.use('/contact', contactRouter);
 
-// export default app;
+app.use('/docs', swaggerRouter)
+
+// const express = require('express');
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocument = require('./');
 
 // const app = express();
-// const PORT = 3001;
-// app.use(cors({origin: 'http://localhost:5173'}))
 
-// // app.use('/users', userRoutes);
-// app.use('/', userRoutes);
-// app.use('/amanhecer', amanhecerRoutes);
+// // Adicione a rota para a documentação Swagger
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// const swaggerUi = require('swagger-ui-express')
-// const swaggerFile = require('./swagger_output.json')
-// app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-// require('./endpoints')(app)
+// // Defina suas outras rotas aqui...
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// app.listen(PORT, () => {
-//   console.log(`Servidor rodando na porta ${PORT}`);
+// app.listen(3000, () => {
+//     console.log('Server is running on port 3000');
 // });
+
+
+// app.use('/api-docs', swaggerRouter); // Rota para acessar a documentação da API
+
+// app.use('/api-documentation', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDocument))
+
+// app.use(cors({origin: 'http://localhost:5173'})

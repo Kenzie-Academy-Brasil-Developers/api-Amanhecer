@@ -1,12 +1,7 @@
+import "dotenv/config";
 import {app} from "./app"
 import { AppDataSource } from './data-source';
-// import express from 'express';
-// import "dotenv/config";
 
-
-
-
-// const app = express();
 
 AppDataSource.initialize()
   .then(() => {

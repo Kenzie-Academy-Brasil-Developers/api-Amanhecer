@@ -1,13 +1,14 @@
-import {Router} from 'express';
-import { UserController } from '../controllers/userControllers';
-// import { validateRequest } from '../middlewares/validateMiddleware';
-// import { CreateUserSchema, LoginUserSchema } from '../shemas/userShemas';
+import { createDataBody } from './../shemas/userShemas';
+import { Router } from 'express';
+import { createUserController } from './../controllers/userControllers';
+import { LoginUserSchema } from '../shemas/userShemas';
+import { createTokenController } from '../controllers/sessionController';
+import { contactDataIsValidMiddleware } from '../middlewares/contactDataIsValid.middleware';
 
-export const userRoutes:Router = Router();
-const userController = new UserController();
+export const userRoutes: Router = Router();
 
-// usersRouter.post('/register', validateRequest(CreateUserSchema), userController.createUser);
-userRoutes.post('/register', userController.createUser);
-// usersRouter.post('/login', validateRequest(LoginUserSchema), userController.loginUser);
+userRoutes.post('/register', contactDataIsValidMiddleware(createDataBody), createUserController);
+userRoutes.post('/login', contactDataIsValidMiddleware(LoginUserSchema), createTokenController);
 
-// export default {userRoutes};
+
+export default { userRoutes };

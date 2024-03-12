@@ -1,5 +1,5 @@
-// User.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Contact } from './contact.entities';
 
 
 @Entity('users')
@@ -22,6 +22,7 @@ export class User {
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   registrationDate: Date;
-  contacts: any;
+  @ManyToOne(() => Contact, (contact) => contact.user)
+  contacts: Contact[];
 
 }
