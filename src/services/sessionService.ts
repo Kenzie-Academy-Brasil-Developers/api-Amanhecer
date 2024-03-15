@@ -23,7 +23,7 @@ const createTokenService = async ({ email, password }: userLogin) => {
 
     const token = jwt.sign({ userName: user.name }, process.env.SECRET_KEY!, { expiresIn: '1d', subject: String(user.id) });
 
-    return token
+    return {token, userId: user.id}
 }
 
 export { createTokenService }

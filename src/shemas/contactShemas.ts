@@ -2,7 +2,7 @@ import { date, z } from "zod";
 
 
 const contactSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   name: z.string(),
   email: z.string(),
   phone: z.string(), 
@@ -15,7 +15,7 @@ const contactSchemaRequest = contactSchema.omit({
 })
 
 const contactShemaCreate = contactSchema.omit({
-  user: true, created_at: true, registrationDate: true
+  user: true, id:true, created_at: true, registrationDate: true
 })
 
 const contactSchemaUpdate = contactSchema.omit({
