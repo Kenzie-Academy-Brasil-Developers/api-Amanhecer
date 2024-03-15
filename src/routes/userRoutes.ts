@@ -7,6 +7,7 @@ import { contactDataIsValidMiddleware } from '../middlewares/contactDataIsValid.
 
 export const userRoutes: Router = Router();
 
+
 userRoutes.post('/register', contactDataIsValidMiddleware(createDataBody), createUserController);
 userRoutes.post('/login', contactDataIsValidMiddleware(LoginUserSchema), createTokenController);
 
