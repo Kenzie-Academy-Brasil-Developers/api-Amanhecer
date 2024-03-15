@@ -4,7 +4,7 @@ import { User } from "./userEntitie";
 @Entity("contacts")
 class Contact {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column()
   name: string;
