@@ -10,7 +10,7 @@ export const contactRouter = Router()
 
 contactRouter.use(contactAuthUserMiddleware)
 contactRouter.post("", contactDataIsValidMiddleware(contactShemaCreate), createContactController)
-contactRouter.get("", getAllContactsController)
+contactRouter.get("/user", getAllContactsController)
 contactRouter.patch("/:id", contactOwnerMiddleware, contactDataIsValidMiddleware(contactSchemaUpdate), contactUpdate)
 contactRouter.delete("/:id", contactOwnerMiddleware, contactRemove) 
  
